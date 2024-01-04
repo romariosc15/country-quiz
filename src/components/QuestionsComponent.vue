@@ -9,10 +9,11 @@
   const chooseAnswer = (selectedOption) => {
     selectedAnswer.value = selectedOption
     rightAnswer.value = questions.value[store.state.currentQuestion].answer
+    if(selectedOption === rightAnswer.value) store.commit('incrementQuizScore')
     setTimeout(() => {
       store.commit('nextQuestion')
       rightAnswer.value = ''
-    }, 3000)
+    }, 2000)
   }
   onMounted(async () => {
     questions.value = await generateQuestions(5)
@@ -20,7 +21,7 @@
 </script>
 
 <template>
-  <div v-if="questions.length > 0" class="text-[#E2E4F3] text-center">
+  <div v-if="questions.length > 0 && store.state.currentQuestion < questions.length " class="text-[#E2E4F3] text-center">
     <h4 class="text-[#E2E4F3] font-medium text-xl">{{ questions[store.state.currentQuestion].question }}</h4>
     <div class="grid grid-cols-2 gap-x-8 gap-y-6 px-40 mt-8">
       <button
@@ -36,6 +37,17 @@
         <img v-else-if="rightAnswer !== ''" src="../assets/images/icons/Close_round_fill.svg" alt="Check" class="w-5 h-5 inline-block ml-4">
       </button>
     </div>
+  </div>
+  <div v-else-if="store.state.currentQuestion >= questions.length">
+    <img src="../assets/images/congrats.png" alt="Check" class="w-[200px] h-[200px] inline-block">
+    <h3 class="text-[#E2E4F3] text-2xl font-medium mt-4">Congrats! You completed the quiz </h3>
+    <p class="text-[#E2E4F3] text-base">You answer {{store.state.quizScore}}/{{questions.length}} correctly</p>
+    <a
+      href="/quiz"
+      class="inline-block text-[#E2E4F3] bg-gradient-to-r from-[#E65895] to-[#BC6BE8] rounded-lg py-3 px-8 mt-6 text-lg font-medium hover:opacity-85 transition-opacity duration-300"
+    >
+      Play again
+    </a>
   </div>
 </template>
 
