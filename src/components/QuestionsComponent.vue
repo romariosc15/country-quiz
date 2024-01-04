@@ -42,12 +42,20 @@
     <img src="../assets/images/congrats.png" alt="Check" class="w-[200px] h-[200px] inline-block">
     <h3 class="text-[#E2E4F3] text-2xl font-medium mt-4">Congrats! You completed the quiz </h3>
     <p class="text-[#E2E4F3] text-base">You answer {{store.state.quizScore}}/{{questions.length}} correctly</p>
-    <a
-      href="/quiz"
-      class="inline-block text-[#E2E4F3] bg-gradient-to-r from-[#E65895] to-[#BC6BE8] rounded-lg py-3 px-8 mt-6 text-lg font-medium hover:opacity-85 transition-opacity duration-300"
-    >
-      Play again
-    </a>
+    <div class="space-x-6">
+      <router-link
+        to="/"
+        class="inline-block text-[#E2E4F3] bg-gradient-to-r from-[#E65895] to-[#BC6BE8] rounded-lg py-3 px-8 mt-6 text-lg font-medium hover:opacity-85 transition-opacity duration-300"
+      >
+        Return to home
+      </router-link>
+      <a
+        href="/quiz"
+        class="inline-block text-[#E2E4F3] bg-gradient-to-r from-[#E65895] to-[#BC6BE8] rounded-lg py-3 px-8 mt-6 text-lg font-medium hover:opacity-85 transition-opacity duration-300"
+      >
+        Play again
+      </a>
+    </div>
   </div>
 </template>
 
