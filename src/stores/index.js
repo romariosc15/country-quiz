@@ -14,7 +14,7 @@ const store = createStore({
     },
     incrementQuizScore (state) {
       state.quizScore++
-    }
+    },
   }
 })
 
